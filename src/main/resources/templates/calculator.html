@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+    <title>Result calculator</title>
+</head>
+<body>
+<div class="driver_container">
+    <div class="drivers-buttons">
+        <div class="buttons">
+            <h1>Standings calculator:</h1>
+            <br>
+            <br>
+            <form action="#" method="post" th:action="@{/calculate}" th:object="${new_results}">
+                <label>
+                    Race:
+                    <input type="text" th:field="${new_results.raceName}">
+                </label>
+                <br>
+                <label>
+                    Season (year):
+                    <input type="text" th:field="${new_results.seasonYear}">
+                </label>
+                <br>
+                <label>
+                    Driver name:
+                    <input type="text" th:field="${new_results.driverName}">
+                </label>
+                <br>
+                <label>
+                    Driver surname:
+                    <input type="text" th:field="${new_results.driverSurname}">
+                </label>
+                <br>
+                <label>
+                    Position started:
+                    <input type="number" min="-1" max="20" th:field="${new_results.positionStarted}">
+                </label>
+                <br>
+                <label>
+                    Position finished:
+                    <input type="number" min="-1" max="20" th:field="${new_results.positionFinished}">
+                </label>
+                <br>
+                <br>
+                <br>
+
+                <button type="submit">Recalculate results</button>
+                <br>
+                <br>
+                <br>
+                <a th:href="@{/}">
+                    <button type="button">Go back to main page</button>
+                </a>
+            </form><br>
+
+
+        </div>
+    </div>
+    <div class="drivers" >
+        <table>
+            <thead>
+            <tr>
+                <td>Name:</td>
+                <td>Surname:</td>
+                <td>Points:</td>
+            </tr>
+            </thead>
+            <tr th:each="driver : ${driver_standings}">
+                <td th:text="${driver.getName()}"></td>
+                <td th:text="${driver.getSurname()}"></td>
+                <td th:text="${driver.getTotalPoints()}"></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+</body>
+</html>

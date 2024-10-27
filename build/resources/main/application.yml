@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: TPO_03
+  h2:
+    console:
+      path: /my-h2-console
+  datasource:
+    url: jdbc:h2:file:./db/formula
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: never

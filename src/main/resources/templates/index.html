@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<div class="container">
+    <div class="left">
+    <h1>Last race: </h1>
+    <table>
+        <thead>
+        <tr>
+            <td>Name:</td>
+            <td>Surname:</td>
+            <td>Started:</td>
+            <td>Finished:</td>
+        </tr>
+        </thead>
+        <tr th:each="res : ${last_race_res}">
+            <td th:text="${res.getDriverName()}"></td>
+            <td th:text="${res.getDriverSurname()}"></td>
+            <td th:text="${res.getPositionStarted()}"></td>
+            <td th:unless="${res.getPositionFinished() == -1}" th:text="${res.getPositionFinished()}"></td>
+            <td th:if="${res.getPositionFinished() == -1}" th:text="DNF"></td>
+        </tr>
+    </table>
+        <div class="buttons">
+        <br>
+        <br>
+        <br>
+        <a th:href="@{/drivers}">
+            <button type="button">View drivers list</button>
+        </a>
+        <br>
+        <br>
+        <br>
+        <a th:href="@{/teams}">
+            <button type="button">View teams list</button>
+        </a>
+        <br>
+        <br>
+        <br>
+        <a th:href="@{/calculator}">
+            <button type="button">Go to race calculator</button>
+        </a>
+            <br>
+            <br>
+            <br>
+            <a th:href="@{/champions}">
+                <button type="button">View champions list</button>
+            </a>
+        </div>
+</div>
+
+
+<div class="right">
+<h1>Calendar: </h1>
+<table>
+    <thead>
+    <tr>
+        <td>Race:</td>
+        <td>Place:</td>
+        <td>Date:</td>
+        <td>Laps:</td>
+    </tr>
+    </thead>
+    <tr th:each="race : ${calendar}">
+        <td th:text="${race.getName()}"></td>
+        <td th:text="${race.getPlace()}"></td>
+        <td th:text="${race.getDate()}"></td>
+        <td th:text="${race.getLaps()}"></td>
+    </tr>
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

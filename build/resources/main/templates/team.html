@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+    <title>Team info</title>
+</head>
+<body>
+<div class="driver_container">
+    <div class="drivers-buttons">
+        <div class="buttons">
+            <h1>Team info:</h1>
+            <br>
+            <br>
+            <br>
+            <img width="300px" th:src="@{/images/{photoUrl}(photoUrl=${team.photourl})}">
+            <a th:href="@{/}">
+                <button type="button">Go back to main page</button>
+            </a>
+        </div>
+    </div>
+    <div class="teams" >
+        <div class="right" >
+            <table th:if="${team}">
+                <h3 th:text="|Name: ${team.name}|">
+                </h3>
+                <br>
+                <h3 th:text="|Team Principle: ${team.teamPrinciple}|" >
+                </h3>
+                <br>
+                <h3 th:text="|Country of origin: ${team.countryOfOrigin}|" >
+                </h3>
+                <br>
+                <h3 th:text="|Foundation date:  ${team.getFoundationDate()}|"  >
+                </h3>
+                <br>
+                <h3>Winning seasons:</h3>
+                <span th:each="season : ${team.getWinningSeasons()}" th:text="${season.getYear()}">
+                </span>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

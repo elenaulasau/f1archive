@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <title>Driver Info</title>
+</head>
+<body>
+<div class="driver_container">
+    <div class="drivers-buttons">
+        <div class="buttons">
+            <h1>Driver info:</h1>
+            <br>
+            <br>
+            <br>
+            <img width="300px" th:src="@{/images/{photoUrl}(photoUrl=${driver.photoUrl})}">
+            <h1 th:if="${error}" th:text="${error}">
+            </h1>
+            <a th:unless="${error}" th:href="@{/}">
+                <button type="button">Go back to main page</button>
+            </a>
+        </div>
+    </div>
+    <div class="right" >
+        <table th:if="${driver}">
+            <h3 th:text="|Name: ${driver.name}|">
+            </h3>
+            <br>
+            <h3 th:text="|Surname: ${driver.surname}|" >
+            </h3>
+            <br>
+            <h3 th:text="|Date of birth: ${driver.dateOfBirth}|" >
+            </h3>
+            <br>
+            <h3 th:text="|Start of career:  ${driver.startOfCareer}|"  >
+            </h3>
+            <br>
+            <h3  th:text="|End of career: ${driver.endOfCareer}|  " >
+            </h3>
+            <br>
+            <h3 th:text="|Total points:  ${driver.totalPoint}|">
+            </h3>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

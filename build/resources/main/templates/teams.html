@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <title>Teams List</title>
+</head>
+<body>
+<div class="driver_container">
+    <div class="drivers-buttons">
+        <div class="buttons">
+            <h1>Teams list:</h1>
+            <br>
+            <br>
+            <br>
+            <a th:href="@{/}">
+                <button type="button">Go back to main page</button>
+            </a>
+        </div>
+    </div>
+    <div class="teams" >
+        <table>
+            <thead>
+            <tr>
+                <td>Name:</td>
+                <td>Principle:</td>
+                <td>Foundation date:</td>
+                <td>Country of origin:</td>
+                <td>Winning seasons:</td>
+            </tr>
+            </thead>
+            <tr th:each="team : ${teams}" th:onclick="|location.href='@{/team/{id}(id=${team.getId()})}'|">
+                <td th:text="${team.getName()}"></td>
+                <td th:text="${team.getTeamPrinciple()}"></td>
+                <td th:text="${team.getFoundationDate()}"></td>
+                <td th:text="${team.getCountryOfOrigin()}"></td>
+                <td>
+                    <th:block th:each="season : ${team.getWinningSeasons()}" th:text="${season.getYear()}">
+
+                    </th:block>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

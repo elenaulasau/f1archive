@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <title>Champions List</title>
+</head>
+<body>
+<div class="driver_container">
+    <div class="drivers-buttons">
+        <div class="buttons">
+            <h1>Champions list:</h1>
+            <br>
+            <br>
+            <br>
+            <form action="#" method="post" th:action="@{/findChampion}">
+                <label>
+                   Input year:
+                    <input name="year" type="number">
+                </label>
+                <br>
+                <br>
+                <br>
+                <table th:if="${found_champion}">
+                    <thead>
+                    <tr>
+                        <td>Name:</td>
+                        <td>Surname:</td>
+                        <td>Team:</td>
+                        <td>Year:</td>
+                    </tr>
+                    </thead>
+                    <tr th:if="${found_champion}">
+                        <td th:text="${found_champion.getName()}"></td>
+                        <td th:text="${found_champion.getSurname()}"></td>
+                        <td th:text="${found_champion.getTeam()}"></td>
+                        <td th:text="${found_champion.getYear()}"></td>
+                    </tr>
+                </table>
+                <br>
+                <button type="submit">Find</button>
+                <br>
+                <br>
+                <br>
+                <a th:href="@{/}">
+                    <button type="button">Go back to main page</button>
+                </a>
+            </form><br>
+
+        </div>
+    </div>
+    <div class="drivers" >
+        <table>
+            <thead>
+            <tr>
+                <td>Name:</td>
+                <td>Surname:</td>
+                <td>Team:</td>
+                <td>Year:</td>
+            </tr>
+            </thead>
+            <tr th:each="driver : ${champions}">
+                <td th:text="${driver.getName()}"></td>
+                <td th:text="${driver.getSurname()}"></td>
+                <td th:text="${driver.getTeam()}"></td>
+                <td th:text="${driver.getYear()}"></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
